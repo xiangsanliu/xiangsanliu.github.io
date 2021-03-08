@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"xiangsanliu.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="N1 小钢炮固件安装 AdGuardHome一、安装SSH 连接 N1，输入命令： 1234mkdir &#x2F;opt&#x2F;adguardhomemkdir &#x2F;opt&#x2F;adguardhome&#x2F;confmkdir &#x2F;opt&#x2F;adguardhome&#x2F;workdocker run --name adguardhome -v &#x2F;opt&#x2F;adguardhome&#x2F;work:&#x2F;opt&#x2F;adguardhome&#x2F;work -">
+<meta property="og:type" content="article">
+<meta property="og:title" content="N1小钢炮固件安装AdGuardHome">
+<meta property="og:url" content="http://xiangsanliu.top/2020/07/03/n1-adguardhome/index.html">
+<meta property="og:site_name" content="项三六技术分享">
+<meta property="og:description" content="N1 小钢炮固件安装 AdGuardHome一、安装SSH 连接 N1，输入命令： 1234mkdir &#x2F;opt&#x2F;adguardhomemkdir &#x2F;opt&#x2F;adguardhome&#x2F;confmkdir &#x2F;opt&#x2F;adguardhome&#x2F;workdocker run --name adguardhome -v &#x2F;opt&#x2F;adguardhome&#x2F;work:&#x2F;opt&#x2F;adguardhome&#x2F;work -">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiangsanliu/images/img/007S8ZIlly1gj57gmh5asj30ew0e4gmh.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiangsanliu/images/img/007S8ZIlly1gj57gnfmwzj31sc0k8djb.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiangsanliu/images/img/007S8ZIlly1gj57go91znj30y40aewf8.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiangsanliu/images/img/007S8ZIlly1gj57gpmr5yj30cc0cegmb.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiangsanliu/images/img/007S8ZIlly1gj57gt0kcqj31rs0byq63.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiangsanliu/images/img/007S8ZIlly1gj57gvg7paj310q0audgk.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiangsanliu/images/img/007S8ZIlly1gj57gwvfsuj31a30u04kc.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiangsanliu/images/img/007S8ZIlly1gj57gxava9j31cu0u0qe6.jpg">
+<meta property="article:published_time" content="2020-07-03T09:59:07.000Z">
+<meta property="article:modified_time" content="2021-03-08T05:25:36.984Z">
+<meta property="article:author" content="项三六">
+<meta property="article:tag" content="linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/xiangsanliu/images/img/007S8ZIlly1gj57gmh5asj30ew0e4gmh.jpg">
+
+<link rel="canonical" href="http://xiangsanliu.top/2020/07/03/n1-adguardhome/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>N1小钢炮固件安装AdGuardHome | 项三六技术分享</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">项三六技术分享</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xiangsanliu.top/2020/07/03/n1-adguardhome/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="项三六">
+      <meta itemprop="description" content="项三六技术分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="项三六技术分享">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          N1小钢炮固件安装AdGuardHome
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-03 17:59:07" itemprop="dateCreated datePublished" datetime="2020-07-03T17:59:07+08:00">2020-07-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-08 13:25:36" itemprop="dateModified" datetime="2021-03-08T13:25:36+08:00">2021-03-08</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="N1-小钢炮固件安装-AdGuardHome"><a href="#N1-小钢炮固件安装-AdGuardHome" class="headerlink" title="N1 小钢炮固件安装 AdGuardHome"></a>N1 小钢炮固件安装 AdGuardHome</h1><h2 id="一、安装"><a href="#一、安装" class="headerlink" title="一、安装"></a>一、安装</h2><p>SSH 连接 N1，输入命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir /opt/adguardhome</span><br><span class="line">mkdir /opt/adguardhome/conf</span><br><span class="line">mkdir /opt/adguardhome/work</span><br><span class="line">docker run --name adguardhome -v /opt/adguardhome/work:/opt/adguardhome/work -v /opt/adguardhome/conf:/opt/adguardhome/conf --restart always --net host -d adguard/adguardhome:arm64-latest</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h2 id="二、AdguardHome-配置"><a href="#二、AdguardHome-配置" class="headerlink" title="二、AdguardHome 配置"></a>二、AdguardHome 配置</h2><h3 id="1-浏览器打开-http-N1的IP-3000-输入账密码、端口等，dns-的端口填-80"><a href="#1-浏览器打开-http-N1的IP-3000-输入账密码、端口等，dns-的端口填-80" class="headerlink" title="1. 浏览器打开 http://N1的IP:3000,输入账密码、端口等，dns 的端口填 80"></a>1. 浏览器打开 <code>http://N1的IP:3000</code>,输入账密码、端口等，dns 的端口填 80</h3><h3 id="2-配置-DNS"><a href="#2-配置-DNS" class="headerlink" title="2. 配置 DNS"></a>2. 配置 DNS</h3><p><img src="https://cdn.jsdelivr.net/gh/xiangsanliu/images/img/007S8ZIlly1gj57gmh5asj30ew0e4gmh.jpg" alt=""></p>
+<h4 id="2-1-上游-DNS-填入以下地址，并勾选并行请求："><a href="#2-1-上游-DNS-填入以下地址，并勾选并行请求：" class="headerlink" title="2.1 上游 DNS 填入以下地址，并勾选并行请求："></a>2.1 上游 DNS 填入以下地址，并勾选并行请求：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">tls:&#x2F;&#x2F;dns.quad9.net</span><br><span class="line">tls:&#x2F;&#x2F;dns.google</span><br><span class="line">tls:&#x2F;&#x2F;1.1.1.1</span><br><span class="line">223.5.5.5</span><br><span class="line">223.6.6.6</span><br><span class="line">114.114.114.114</span><br><span class="line">114.114.115.115</span><br><span class="line">119.29.29.29</span><br><span class="line">119.28.28.28</span><br><span class="line">tls:&#x2F;&#x2F;1.0.0.1</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/xiangsanliu/images/img/007S8ZIlly1gj57gnfmwzj31sc0k8djb.jpg" alt=""></p>
+<h4 id="2-2-Bootstrap-DNS-服务器填入："><a href="#2-2-Bootstrap-DNS-服务器填入：" class="headerlink" title="2.2 Bootstrap DNS 服务器填入："></a>2.2 Bootstrap DNS 服务器填入：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">114.114.114.114:53</span><br><span class="line">8.8.8.8:53</span><br><span class="line">8.8.4.4:53</span><br><span class="line">1.1.1.1:53</span><br><span class="line">208.67.220.220:53</span><br><span class="line">208.67.222.222:53</span><br><span class="line">2400:3200::1</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-然后点击应用，并把DNS-服务设定中把速度限制改为-0"><a href="#2-3-然后点击应用，并把DNS-服务设定中把速度限制改为-0" class="headerlink" title="2.3 然后点击应用，并把DNS 服务设定中把速度限制改为 0"></a>2.3 然后点击应用，并把<code>DNS 服务设定</code>中把<code>速度限制</code>改为 0</h4><p><img src="https://cdn.jsdelivr.net/gh/xiangsanliu/images/img/007S8ZIlly1gj57go91znj30y40aewf8.jpg" alt=""></p>
+<h3 id="3-配置广告过滤"><a href="#3-配置广告过滤" class="headerlink" title="3. 配置广告过滤"></a>3. 配置广告过滤</h3><p><img src="https://cdn.jsdelivr.net/gh/xiangsanliu/images/img/007S8ZIlly1gj57gpmr5yj30cc0cegmb.jpg" alt=""></p>
+<p>先把自带的 3 个规则勾选上</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiangsanliu/images/img/007S8ZIlly1gj57gt0kcqj31rs0byq63.jpg" alt=""></p>
+<p>然后通过点击<code>添加阻止列表</code>来添加过滤规则，这里给出我的过滤规则。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">My AdFilters</span><br><span class="line">https:&#x2F;&#x2F;gitee.com&#x2F;halflife&#x2F;list&#x2F;raw&#x2F;master&#x2F;ad.txt</span><br><span class="line"></span><br><span class="line">xinggsf</span><br><span class="line">https:&#x2F;&#x2F;gitee.com&#x2F;xinggsf&#x2F;Adblock-Rule&#x2F;raw&#x2F;master&#x2F;rule.txt</span><br><span class="line"></span><br><span class="line">大圣净化</span><br><span class="line">https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jdlingyu&#x2F;ad-wars&#x2F;master&#x2F;hosts</span><br><span class="line"></span><br><span class="line">yhosts</span><br><span class="line">https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;VeleSila&#x2F;yhosts&#x2F;master&#x2F;hosts</span><br><span class="line"></span><br><span class="line">adgk手机去广告规则</span><br><span class="line">https:&#x2F;&#x2F;gitee.com&#x2F;banbendalao&#x2F;adguard&#x2F;raw&#x2F;master&#x2F;ADgk.txt</span><br><span class="line"></span><br><span class="line">anti-ad</span><br><span class="line">https:&#x2F;&#x2F;gitee.com&#x2F;privacy-protection-tools&#x2F;anti-ad&#x2F;raw&#x2F;master&#x2F;easylist.txt</span><br><span class="line"></span><br><span class="line">EasyList China</span><br><span class="line">https:&#x2F;&#x2F;easylist-downloads.adblockplus.org&#x2F;easylistchina.txt</span><br><span class="line"></span><br><span class="line">EasyList</span><br><span class="line">https:&#x2F;&#x2F;easylist-downloads.adblockplus.org&#x2F;easylist.txt</span><br><span class="line"></span><br><span class="line">googlehosts</span><br><span class="line">https:&#x2F;&#x2F;scaffrey.coding.net&#x2F;p&#x2F;hosts&#x2F;d&#x2F;hosts&#x2F;git&#x2F;raw&#x2F;master&#x2F;hosts-files&#x2F;hosts</span><br><span class="line"></span><br><span class="line">1024_hosts</span><br><span class="line">https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Goooler&#x2F;1024_hosts&#x2F;master&#x2F;hosts</span><br><span class="line"></span><br><span class="line">neoHosts</span><br><span class="line">https:&#x2F;&#x2F;hosts.nfz.moe&#x2F;full&#x2F;hosts</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、路由器端设置"><a href="#三、路由器端设置" class="headerlink" title="三、路由器端设置"></a>三、路由器端设置</h2><p>以老毛子系统为例：<code>内部网络(LAN) -&gt; DHCP服务器</code>，在<code>DNS服务器 1</code>中填入 N1 的 IP，其它留空：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiangsanliu/images/img/007S8ZIlly1gj57gvg7paj310q0audgk.jpg" alt=""></p>
+<p>然后手机或电脑重新连接 Wi-Fi。</p>
+<p>大功告成～</p>
+<h2 id="四、效果"><a href="#四、效果" class="headerlink" title="四、效果"></a>四、效果</h2><p><img src="https://cdn.jsdelivr.net/gh/xiangsanliu/images/img/007S8ZIlly1gj57gwvfsuj31a30u04kc.jpg" alt="开启前"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiangsanliu/images/img/007S8ZIlly1gj57gxava9j31cu0u0qe6.jpg" alt="开启后"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/linux/" rel="tag"># linux</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/02/11/wsl-ubuntu-mysql/" rel="prev" title="Ubuntu 18.04(WSL)下安装MySQL">
+      <i class="fa fa-chevron-left"></i> Ubuntu 18.04(WSL)下安装MySQL
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/07/03/n1-openwrt/" rel="next" title="N1小钢炮固件安装OpenWrt软路由">
+      N1小钢炮固件安装OpenWrt软路由 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#N1-小钢炮固件安装-AdGuardHome"><span class="nav-number">1.</span> <span class="nav-text">N1 小钢炮固件安装 AdGuardHome</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、安装"><span class="nav-number">1.1.</span> <span class="nav-text">一、安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、AdguardHome-配置"><span class="nav-number">1.2.</span> <span class="nav-text">二、AdguardHome 配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-浏览器打开-http-N1的IP-3000-输入账密码、端口等，dns-的端口填-80"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. 浏览器打开 http:&#x2F;&#x2F;N1的IP:3000,输入账密码、端口等，dns 的端口填 80</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-配置-DNS"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. 配置 DNS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-上游-DNS-填入以下地址，并勾选并行请求："><span class="nav-number">1.2.2.1.</span> <span class="nav-text">2.1 上游 DNS 填入以下地址，并勾选并行请求：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-Bootstrap-DNS-服务器填入："><span class="nav-number">1.2.2.2.</span> <span class="nav-text">2.2 Bootstrap DNS 服务器填入：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-然后点击应用，并把DNS-服务设定中把速度限制改为-0"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">2.3 然后点击应用，并把DNS 服务设定中把速度限制改为 0</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-配置广告过滤"><span class="nav-number">1.2.3.</span> <span class="nav-text">3. 配置广告过滤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、路由器端设置"><span class="nav-number">1.3.</span> <span class="nav-text">三、路由器端设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、效果"><span class="nav-number">1.4.</span> <span class="nav-text">四、效果</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">项三六</p>
+  <div class="site-description" itemprop="description">项三六技术分享</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">项三六</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
